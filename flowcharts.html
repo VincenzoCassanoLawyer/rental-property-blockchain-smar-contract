@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DreamProperty - System Flowcharts</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 50px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.1em;
+            margin-bottom: 50px;
+        }
+
+        .flowchart-section {
+            margin-bottom: 80px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .flowchart-section h2 {
+            color: #333;
+            font-size: 2em;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .flowchart-section h2::before {
+            content: '';
+            width: 5px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 3px;
+        }
+
+        .mermaid {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
+        }
+
+        .description {
+            margin-top: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .description p {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .description ul {
+            margin-left: 20px;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .description li {
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .flowchart-section {
+                padding: 20px;
+            }
+
+            .flowchart-section h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>DreamProperty Platform</h1>
+        <p class="subtitle">System Flowcharts - High Level Process Flows</p>
+
+        <!-- Flowchart 1: Property Owner to Listing -->
+        <div class="flowchart-section">
+            <h2>1. Property Owner to Listing Flow</h2>
+            <div class="mermaid">
+flowchart TD
+    Start([Property Owner<br/>Starts Process]) --> Register[Create Account<br/>on Platform]
+    Register --> Submit[Submit Property Details<br/>- Ownership Documents<br/>- Property Information<br/>- Current Valuation<br/>- Growth Rate]
+    Submit --> Wait[Wait for Platform<br/>Verification]
+    Wait --> Verify{Platform Admin<br/>Verification}
+    Verify -->|Approved| Tokenize[Mint Property NFT<br/>ERC-721 Standard]
+    Verify -->|Rejected| Reject[Property Rejected<br/>Notification Sent]
+    Reject --> End1([End])
+    Tokenize --> Upload[Upload Metadata<br/>to IPFS Storage]
+    Upload --> Fractionalize[Fractionalize Property<br/>Create Property Tokens<br/>ERC-20/ERC-1155]
+    Fractionalize --> Calculate[Calculate Token Supply<br/>Based on Property Value]
+    Calculate --> List[List Property on<br/>Marketplace]
+    List --> Display[Display Property Details<br/>- Price per Token<br/>- Total Supply<br/>- Expected ROI<br/>- Rental Yield]
+    Display --> Available[Property Available<br/>for Investment]
+    Available --> End2([Property Listed<br/>Successfully])
+
+    style Start fill:#667eea,stroke:#333,stroke-width:3px,color:#fff
+    style End1 fill:#e74c3c,stroke:#333,stroke-width:2px,color:#fff
+    style End2 fill:#27ae60,stroke:#333,stroke-width:3px,color:#fff
+    style Tokenize fill:#f39c12,stroke:#333,stroke-width:2px,color:#fff
+    style List fill:#3498db,stroke:#333,stroke-width:2px,color:#fff
+            </div>
+            <div class="description">
+                <p><strong>Process Overview:</strong></p>
+                <ul>
+                    <li>Property owner registers and submits property information with documentation</li>
+                    <li>Platform admin verifies ownership, legal compliance, and valuation</li>
+                    <li>Upon approval, property is tokenized as NFT and fractionalized into investment tokens</li>
+                    <li>Property is listed on marketplace with investment details and financial metrics</li>
+                    <li>Property becomes available for investors to purchase fractional shares</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Flowchart 2: User to Invest -->
+        <div class="flowchart-section">
+            <h2>2. User to Invest Flow</h2>
+            <div class="mermaid">
+flowchart TD
+    Start([Investor<br/>Visits Platform]) --> Browse[Browse Property<br/>Listings]
+    Browse --> Filter[Filter Properties<br/>by Location, ROI, Type]
+    Filter --> Select[Select Property<br/>to Invest In]
+    Select --> View[View Property Details<br/>- Financial Metrics<br/>- Token Information<br/>- 3D View/360° Tour]
+    View --> Connect[Connect Cryptocurrency<br/>Wallet<br/>MetaMask/WalletConnect]
+    Connect --> Choose[Choose Investment Amount<br/>Select Number of Tokens]
+    Choose --> Review[Review Transaction<br/>- Total Investment<br/>- Platform Fee<br/>- Tokens to Receive]
+    Review --> Approve{Approve Transaction<br/>in Wallet}
+    Approve -->|Rejected| Cancel[Transaction Cancelled]
+    Cancel --> End1([End])
+    Approve -->|Approved| Execute[Smart Contract Executes<br/>- ETH Transferred<br/>- Platform Fee Deducted<br/>- Tokens Minted]
+    Execute --> Receive[Receive Property Tokens<br/>in Wallet]
+    Receive --> Portfolio[Tokens Added to<br/>Portfolio]
+    Portfolio --> Track[Track Investment<br/>- Portfolio Value<br/>- Rental Income<br/>- Capital Appreciation]
+    Track --> Income[Receive Monthly<br/>Rental Income]
+    Income --> Exit{Exit Options}
+    Exit -->|Sell| Sell[Trade Tokens on<br/>Secondary Marketplace]
+    Exit -->|Hold| Hold[Continue Holding<br/>for Long-term Returns]
+    Exit -->|Buyback| Buyback[Sell to Platform<br/>Buyback Program]
+    Sell --> End2([Investment Complete])
+    Hold --> End2
+    Buyback --> End2
+
+    style Start fill:#667eea,stroke:#333,stroke-width:3px,color:#fff
+    style End1 fill:#e74c3c,stroke:#333,stroke-width:2px,color:#fff
+    style End2 fill:#27ae60,stroke:#333,stroke-width:3px,color:#fff
+    style Execute fill:#f39c12,stroke:#333,stroke-width:2px,color:#fff
+    style Receive fill:#3498db,stroke:#333,stroke-width:2px,color:#fff
+    style Income fill:#9b59b6,stroke:#333,stroke-width:2px,color:#fff
+            </div>
+            <div class="description">
+                <p><strong>Process Overview:</strong></p>
+                <ul>
+                    <li>Investor browses and filters available properties on the marketplace</li>
+                    <li>Selects property and reviews financial details and visualization</li>
+                    <li>Connects cryptocurrency wallet and chooses investment amount</li>
+                    <li>Approves transaction which triggers smart contract execution</li>
+                    <li>Receives fractional property tokens in wallet</li>
+                    <li>Earns monthly rental income and capital appreciation</li>
+                    <li>Can exit investment through secondary market, buyback, or hold long-term</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Flowchart 3: Platform Owner to Generate Revenue -->
+        <div class="flowchart-section">
+            <h2>3. Platform Owner to Generate Revenue Flow</h2>
+            <div class="mermaid">
+flowchart TD
+    Start([Platform Operations<br/>Begin]) --> Property[Property Listed<br/>on Platform]
+    Property --> MintFee[Collect NFT Minting Fee<br/>1-2% of Property Value]
+    MintFee --> Investment[Investor Makes<br/>Investment]
+    Investment --> Commission[Collect Investment Commission<br/>2-3% of Investment Amount]
+    Commission --> Rental[Property Generates<br/>Rental Income]
+    Rental --> ManagementFee[Collect Rental Management Fee<br/>8% of Gross Rental Income]
+    ManagementFee --> Trading[Investors Trade Tokens<br/>on Secondary Market]
+    Trading --> TransactionFee[Collect Transaction Fees<br/>1-2% per Trade]
+    TransactionFee --> Premium[Premium Property Listings<br/>Featured Properties]
+    Premium --> PremiumFee[Collect Premium Listing Fees<br/>Additional Revenue]
+    PremiumFee --> Subscription[Optional Platform<br/>Subscription Services]
+    Subscription --> SubFee[Collect Subscription Fees<br/>Monthly/Annual]
+    SubFee --> Revenue[Total Platform Revenue<br/>Multiple Streams]
+    Revenue --> Growth[Platform Growth<br/>& Expansion]
+    Growth --> MoreProperties[More Properties Listed]
+    MoreProperties --> MoreInvestors[More Investors Join]
+    MoreInvestors --> MoreRevenue[Increased Revenue]
+    MoreRevenue --> End([Sustainable Revenue<br/>Model])
+
+    style Start fill:#667eea,stroke:#333,stroke-width:3px,color:#fff
+    style End fill:#27ae60,stroke:#333,stroke-width:3px,color:#fff
+    style MintFee fill:#f39c12,stroke:#333,stroke-width:2px,color:#fff
+    style Commission fill:#3498db,stroke:#333,stroke-width:2px,color:#fff
+    style ManagementFee fill:#9b59b6,stroke:#333,stroke-width:2px,color:#fff
+    style TransactionFee fill:#e67e22,stroke:#333,stroke-width:2px,color:#fff
+    style Revenue fill:#27ae60,stroke:#333,stroke-width:3px,color:#fff
+            </div>
+            <div class="description">
+                <p><strong>Revenue Streams Overview:</strong></p>
+                <ul>
+                    <li><strong>NFT Minting Fees:</strong> One-time fee when property is tokenized (1-2% of property value)</li>
+                    <li><strong>Investment Commission:</strong> Fee on each investment transaction (2-3% of investment amount)</li>
+                    <li><strong>Rental Management Fees:</strong> Monthly fee for property management services (8% of gross rental income)</li>
+                    <li><strong>Transaction Fees:</strong> Fee on secondary market trades (1-2% per transaction)</li>
+                    <li><strong>Premium Listings:</strong> Additional fees for featured property listings</li>
+                    <li><strong>Subscription Services:</strong> Optional premium features and analytics for users</li>
+                    <li>Multiple revenue streams create sustainable and scalable business model</li>
+                    <li>Revenue grows as platform scales with more properties and investors</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'default',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis',
+                padding: 20
+            },
+            themeVariables: {
+                primaryColor: '#667eea',
+                primaryTextColor: '#fff',
+                primaryBorderColor: '#333',
+                lineColor: '#333',
+                secondaryColor: '#764ba2',
+                tertiaryColor: '#f8f9fa'
+            }
+        });
+    </script>
+</body>
+</html>
+
